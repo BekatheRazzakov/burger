@@ -55,12 +55,10 @@ const App = () => {
             const ingredientsCopy = [...ingredients];
 
             if (ingredientsCopy[index].count >= 1) {
+                setPrice(price - ingredient.price);
                 ingredientsCopy[index].count--;
+                setIngredients(ingredientsCopy);
             }
-
-            setIngredients(ingredientsCopy);
-
-            setPrice(price - ingredient.price);
         };
 
         return (
@@ -70,7 +68,7 @@ const App = () => {
                 </button>
                 <span className='ingredient-name'>{ingredient.name}</span>
                 <span className='ingredient-amount'>x{ingredients[index].count}</span>
-                <button onClick={removeIngredient} className='remove-btn'>Remove x1</button>
+                <button onClick={removeIngredient} className='remove-btn'></button>
             </div>
         );
     });

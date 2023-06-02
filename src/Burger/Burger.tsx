@@ -1,8 +1,9 @@
-import React from "react";
+import React, {ReactNode} from "react";
 import './burger.css';
 
 interface IProps {
-    onInnerChange: any,
+    onInnerChange: ReactNode,
+    burgerPrice: number,
 }
 
 const Burger = (props: IProps) => {
@@ -16,6 +17,7 @@ const Burger = (props: IProps) => {
                 {props.onInnerChange}
                 <div className="BreadBottom"></div>
             </div>
+            <h1 className='burger-price'>Price: {props.burgerPrice}</h1>
         </div>
     );
 };

@@ -7,8 +7,6 @@ import baconImage from './assets/bacon.png';
 import Burger from "./Burger/Burger";
 import './App.css';
 
-interface IIngredients {}
-
 const App = () => {
     const INGREDIENTS = [
         {name: 'Meat', price: 80, image: meatImage, id: nanoid()},
@@ -24,7 +22,9 @@ const App = () => {
         {name: 'Bacon', count: 0},
     ]);
 
-    const [addedIngredients, setAddedIngredients] = useState<IIngredients[]>([]);
+    const [addedIngredients, setAddedIngredients] = useState<string[]>([]);
+
+    const [price, setPrice] = useState(30);
 
     const showIngredients = INGREDIENTS.map(ingredient => {
         const index = INGREDIENTS.indexOf(ingredient);
@@ -39,6 +39,7 @@ const App = () => {
 
             setIngredients(ingredientsCopy);
 
+            setPrice(price + ingredient.price);
         };
 
         const removeIngredient = () => {
@@ -59,6 +60,7 @@ const App = () => {
 
             setIngredients(ingredientsCopy);
 
+            setPrice(price - ingredient.price);
         };
 
         return (
@@ -73,7 +75,7 @@ const App = () => {
         );
     });
 
-    const showBurgerInners = addedIngredients.map((ingredient: any) => {
+    const showBurgerInners = addedIngredients.map((ingredient) => {
         return (
             <div className={ingredient} key={nanoid()}></div>
         );
@@ -87,7 +89,7 @@ const App = () => {
             </div>
             <div className='burger-container'>
                 <h1>Burger</h1>
-                <Burger onInnerChange={showBurgerInners}/>
+                <Burger onInnerChange={showBurgerInners} burgerPrice={price}/>
             </div>
         </div>
     );
